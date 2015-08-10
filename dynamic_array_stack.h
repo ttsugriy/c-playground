@@ -18,8 +18,6 @@ int dynamic_array_stack_empty(DynamicArrayStack* stack);
 
 DynamicArrayStackItem dynamic_array_stack_top(DynamicArrayStack* stack);
 
-size_t dynamic_array_stack_capacity(DynamicArrayStack* stack);
-
 void dynamic_array_stack_pop(DynamicArrayStack* stack);
 
 void dynamic_array_stack_push(
