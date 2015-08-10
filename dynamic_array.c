@@ -41,7 +41,7 @@ void dynamic_array_add(
     array->items[array->size++] = item;
 }
 
-void dynamic_array_remove_at(DynamicArray* array, size_t position) {
+void dynamic_array_remove_at(DynamicArray *array, size_t position) {
     assert(array);
     assert(position < dynamic_array_size(array));
     memcpy(
@@ -60,7 +60,7 @@ size_t dynamic_array_size(const DynamicArray *array) {
     return array->size;
 }
 
-bool dynamic_array_empty(const DynamicArray* array) {
+bool dynamic_array_empty(const DynamicArray *array) {
     assert(array);
     return dynamic_array_size(array) == 0;
 }

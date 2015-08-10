@@ -6,7 +6,7 @@
 typedef int DynamicArrayStackItem;
 
 typedef struct DynamicArrayStack {
-    DynamicArray* array;
+    DynamicArray *array;
 } DynamicArrayStack;
 
 DynamicArrayStack *dynamic_array_stack_create();
