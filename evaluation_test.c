@@ -24,6 +24,7 @@ void test_division() {
 
 void test_complex() {
   assert(evaluate_postfix("1 2 + 12 3 / -") == -1);
+  assert(evaluate_postfix("1 2 3 * + 5 -") == 2);
 }
 
 int main(int argc, char * argv[]) {
