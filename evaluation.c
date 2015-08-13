@@ -1,11 +1,12 @@
 #include "evaluation.h"
 #include "dynamic_array_stack.h"
 #include <assert.h>
+#include <stdbool.h>
 
 const int NOT_SET = -1;
 const int BASE = 10;
 
-int is_digit(const char ch) {
+bool is_digit(const char ch) {
     return ch >= '0' && ch <= '9';
 }
 
@@ -14,7 +15,7 @@ int to_digit_int(const char ch) {
     return ch - '0';
 }
 
-int is_operation(const char ch) {
+bool is_operator(const char ch) {
     return ch == '+' || ch == '-' || ch == '/' || ch == '*';
 }
 
@@ -27,7 +28,7 @@ int max(int a, int b) {
 }
 
 int apply(const char operation, const int operand1, const int operand2) {
-    assert(is_operation(operation));
+    assert(is_operator(operation));
     switch (operation) {
         case '+':
             return operand1 + operand2;
@@ -57,7 +58,7 @@ int evaluate_postfix(const char *expression) {
                 operand = NOT_SET;
             }
         } else {
-            assert(is_operation(ch));
+            assert(is_operator(ch));
             const int operand2 = dynamic_array_stack_top(stack);
             dynamic_array_stack_pop(stack);
             const int operand1 = dynamic_array_stack_top(stack);
