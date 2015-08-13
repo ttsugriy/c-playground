@@ -8,36 +8,36 @@ typedef struct DynamicArrayStack Stack;
 
 Stack *dynamic_array_stack_create() {
   Stack *stack = malloc(sizeof(Stack));
-  assert(stack);
+  assert(stack && "Invalid stack pointer");
   stack->array = dynamic_array_create();
   return stack;
 }
 
 size_t dynamic_array_stack_size(const Stack *stack) {
-  assert(stack);
+  assert(stack && "Invalid stack pointer");
   return dynamic_array_size(stack->array);
 }
 
 int dynamic_array_stack_empty(const Stack *stack) {
-  assert(stack);
+  assert(stack && "Invalid stack pointer");
   return dynamic_array_stack_size(stack) == 0;
 }
 
 Item dynamic_array_stack_top(Stack *stack) {
-  assert(!dynamic_array_stack_empty(stack));
+  assert(!dynamic_array_stack_empty(stack) && "Cannot top empty stack");
   size_t last_idx = dynamic_array_size(stack->array) - 1;
   return dynamic_array_get(stack->array, last_idx);
 }
 
 void dynamic_array_stack_pop(Stack *stack) {
-  assert(stack);
-  assert(!dynamic_array_stack_empty(stack));
+  assert(stack && "Invalid stack pointer");
+  assert(!dynamic_array_stack_empty(stack) && "Cannot pop empty stack");
   size_t last_idx = dynamic_array_size(stack->array) - 1;
   dynamic_array_remove_at(stack->array, last_idx);
 }
 
 void dynamic_array_stack_push(Stack *stack, Item item) {
-  assert(stack);
+  assert(stack && "Invalid stack pointer");
   dynamic_array_add(stack->array, item);
 }
 

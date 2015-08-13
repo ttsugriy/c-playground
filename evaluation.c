@@ -11,7 +11,7 @@ bool is_digit(const char ch) {
 }
 
 int to_digit_int(const char ch) {
-  assert(is_digit(ch));
+  assert(is_digit(ch) && "Non-digits cannot be converted to int");
   return ch - '0';
 }
 
@@ -28,7 +28,7 @@ int max(int a, int b) {
 }
 
 int apply(const char operation, const int operand1, const int operand2) {
-  assert(is_operator(operation));
+  assert(is_operator(operation) && "Unsupported operation");
   switch (operation) {
     case '+':
       return operand1 + operand2;
@@ -39,12 +39,12 @@ int apply(const char operation, const int operand1, const int operand2) {
     case '*':
       return operand1 * operand2;
     default:
-      assert(0);
+      assert(false && "Unsupported operation");
   }
 }
 
 int evaluate_postfix(const char *expression) {
-  assert(expression);
+  assert(expression && "No expression");
   int operand = NOT_SET;
   DynamicArrayStack *stack = dynamic_array_stack_create();
   const char *temp = expression;
@@ -58,7 +58,7 @@ int evaluate_postfix(const char *expression) {
         operand = NOT_SET;
       }
     } else {
-      assert(is_operator(ch));
+      assert(is_operator(ch) && "Unsupported character");
       const int operand2 = dynamic_array_stack_top(stack);
       dynamic_array_stack_pop(stack);
       const int operand1 = dynamic_array_stack_top(stack);
@@ -66,8 +66,8 @@ int evaluate_postfix(const char *expression) {
       dynamic_array_stack_push(stack, apply(ch, operand1, operand2));
     }
   } while (*(temp++) != '\0');
-  assert(operand == NOT_SET);
-  assert(dynamic_array_stack_size(stack) == 1);
+  assert(operand == NOT_SET && "Operand was not flushed");
+  assert(dynamic_array_stack_size(stack) == 1 && "Result must be on stack");
   const int result = dynamic_array_stack_top(stack);
   dynamic_array_stack_destroy(stack);
   return result;
