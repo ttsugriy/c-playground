@@ -6,9 +6,9 @@
 typedef int DynamicArrayItem;
 
 typedef struct DynamicArray {
-    size_t size;
-    size_t capacity;
-    DynamicArrayItem *items;
+  size_t size;
+  size_t capacity;
+  DynamicArrayItem *items;
 } DynamicArray;
 
 DynamicArray *dynamic_array_create();
@@ -24,7 +24,7 @@ bool dynamic_array_empty(const DynamicArray *array);
 DynamicArrayItem dynamic_array_get(const DynamicArray *array, size_t position);
 
 void dynamic_array_set(
-        const DynamicArray *array, size_t position, const DynamicArrayItem item
+    const DynamicArray *array, size_t position, const DynamicArrayItem item
 );
 
 void dynamic_array_destroy(DynamicArray *array);
